@@ -1,0 +1,14 @@
+.display-container {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+}
+.display-container div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+span {
+  font-size: 24px;
+  font-weight: bold;
+}
