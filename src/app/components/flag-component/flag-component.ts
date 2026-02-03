@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { CounterService } from '../../services/counter-service/counter-service';
 import { EmotionService } from '../../services/emotion-service/emotion-service';
 @Component({
@@ -8,12 +8,12 @@ import { EmotionService } from '../../services/emotion-service/emotion-service';
   styleUrl: './flag-component.scss',
 })
 export class FlagComponent {
+state = signal("");
 counter = inject(CounterService);
 emotionService = inject(EmotionService);
 constructor() {
     effect(() => {
-      console.log(`ControlsComponent count: ${this.counter.count()}`);
-      console.log(`ControlsComponent emotion: ${this.emotionService.emotion()}`);
+      this.state.set("I'm " + this.emotionService.emotion() + " and my count is " + this.counter.counterState());
     });
   }
 }

@@ -10,6 +10,7 @@ export class CounterService {
   ///
   // count = signal(0);
   count : WritableSignal<number> = signal(0);
+  counterState : WritableSignal<string> = signal("stopped");
 
   doubleCount = computed(() => this.count() * 2);
   
@@ -28,6 +29,7 @@ export class CounterService {
 
   start() {
     if (this.interval === null) {
+      this.counterState.set("counting");
       this.interval = setInterval(() => {
         this.increment();
       }, 1000);
@@ -38,6 +40,7 @@ export class CounterService {
     if (this.interval !== null) {
       clearInterval(this.interval);
       this.interval = null;
+      this.counterState.set("not counting");
     }
   }
 }
